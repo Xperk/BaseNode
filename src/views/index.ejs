@@ -47,8 +47,13 @@
                                     Detail
                                 </a>
                             </button>
-                            <button>Edit</button>
-                            <button>Delete</button>
+                            <button>
+                                <a href="user/edit/<%= data[i].id %>">Edit</a>
+                            </button>
+                            <form action="/deleteuser" method="post">
+                                <input type="text" hidden value="<%= data[i].id %> " name="userId">
+                                <button type="submit">Delete</button>
+                            </form>
                         </td>
                     </tr>
                     <% } %>
@@ -59,19 +64,19 @@
         <form action="/create" method="post">
             <div class="create_item">
                 <label for="">First Name</label>
-                <input name="firstName" type="text" name="" id="">
+                <input name="firstName" type="text" id="">
             </div>
             <div class="create_item">
                 <label for="">Last Name</label>
-                <input name="lastName" type="text" name="" id="">
+                <input name="lastName" type="text" id="">
             </div>
             <div class="create_item">
                 <label for="">Email</label>
-                <input name="email" type="email" name="" id="">
+                <input name="email" type="email" id="">
             </div>
             <div class="create_item">
                 <label for="">Address</label>
-                <input name="address" type="text" name="" id="">
+                <input name="address" type="text" id="">
             </div>
             <button type="submit">Submit</button>
         </form>
