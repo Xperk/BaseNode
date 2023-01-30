@@ -4,6 +4,7 @@ const app = express()
 const port = process.env.PORT || 3000
 const configViewEngine = require('./configs/viewEngine')
 const initWebRoute = require('./route/web')
+const initAPIRoute = require('./route/api')
 // const connect = require('./configs/connectDb')
 
 //hỗ trợ việc gửi data từ client lên server
@@ -16,6 +17,7 @@ configViewEngine(app);
 
 //initRouter
 initWebRoute(app);
+initAPIRoute(app);
 app.listen(port, () => {
   console.log(`App listening on port http://localhost:${port}`)
 })

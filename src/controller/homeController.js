@@ -14,14 +14,16 @@ const getHomePage = (req, res) => {
 
 //Tìm kiếm id hiển thị detail
 const getDetailPage = (req, res, next) => {
+    // :slug 
     const id = req.params.id
     connection.promise().query(`SELECT * FROM user WHERE id = ?`, [id])
         .then(([rows, fields]) => {
             return res.render('user/detail.ejs', {
-                data: rows
+                data: rows[0]
             })
         })
         .catch(next)
+
     // .then(() => connection.end());
 }
 
@@ -29,7 +31,7 @@ const getDetailPage = (req, res, next) => {
 const create = (req, res, next) => {
     let { firstName, lastName, email, address } = req.body;
     connection.promise().query('insert into user(firstName, lastName,email,address) values(?,?,?,?)',
-     [firstName, lastName, email, address])
+        [firstName, lastName, email, address])
         .then(([rows, fields]) => {
             return res.redirect('/')
         })
@@ -59,9 +61,9 @@ const edit = (req, res, next) => {
 }
 
 const updateuser = (req, res, next) => {
-    const { firstName, lastName, email, address,id} = req.body;
+    const { firstName, lastName, email, address, id } = req.body;
     connection.promise().query("update user set firstName =?, lastName =?, email =?, address =? where id =?",
-    [firstName,lastName,email,address,id])
+        [firstName, lastName, email, address, id])
         .then(([rows, fields]) => {
             return res.redirect('/');
         })
